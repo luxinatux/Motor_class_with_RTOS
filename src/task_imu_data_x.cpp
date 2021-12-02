@@ -4,20 +4,23 @@
 #include <I2Cdev.h>
 #include <MPU6050.h>
 #include <shares.h>
-#include <MPU6050_6Axis_MotionApps20.h>
 
-MPU6050_6Axis_MotionApps20 mpu;
 
-int16_t gx, gy, gz;
-
-uint8_t fifoBuffer[64];
-Quaternion q;
-float euler[3];
 
 
 
 void task_imu_data_x(void* imu_data_x)
 {
+    MPU6050 mpu;
+
+    mpu.initialize();
+
+    int16_t gx, gy, gz;
+
+
+    uint8_t fifoBuffer[64];
+    Quaternion q;
+    float euler[3];
     for (;;)
     {
         // Obtain x and y gyro data
