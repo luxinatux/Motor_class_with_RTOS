@@ -18,4 +18,7 @@ extern Queue<float> imu_queue_gy;
 extern Share<float> imu_share_raw_x; 
 extern Share<float> imu_share_raw_y;
 
+extern Share<float> controller_update_x; 
+extern Share<float> controller_update_y;
+
 #endif

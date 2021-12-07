@@ -37,6 +37,9 @@ Queue<float> imu_queue_gy (256, "gy Data");
 Share<float> imu_share_raw_x ("Raw x data"); 
 Share<float> imu_share_raw_y ("Raw y data");
 
+Share<float> controller_update_x ("Throttle Signal x"); 
+Share<float> controller_update_y ("Throttle Signal y");
+
 
 
 /** @brief   Arduino setup function which runs once at program startup.
@@ -70,19 +73,19 @@ void setup ()
                  1,
                  NULL);
 
-    // xTaskCreate(task_motor1,
-    //              "Data Acq.",
-    //              4096,
-    //              NULL,
-    //              1,
-    //              NULL);
+    xTaskCreate(task_motor1,
+                 "Data Acq.",
+                 4096,
+                 NULL,
+                 1,
+                 NULL);
   
-    // xTaskCreate(task_controller_x,
-    //           "Control",
-    //           2048,
-    //           NULL,
-    //           2,
-    //           NULL);
+    xTaskCreate(task_controller_x,
+              "Control",
+              2048,
+              NULL,
+              2,
+              NULL);
 
     // xTaskCreate(task_fft,
     //           "FFT",
