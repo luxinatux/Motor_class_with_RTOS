@@ -12,12 +12,30 @@
 
 #include <Arduino.h>
 #include <PrintStream.h>
+#include <STM32FreeRTOS.h>
+#include <shares.h>
+#include <taskqueue.h>
+#include <taskshare.h>
 #if (defined STM32L4xx || defined STM32F4xx)
     #include <STM32FreeRTOS.h>
 #endif
 #include "task_square.h"           // Header for square wave task module
 #include "tasks_ui.h"              // Header for user interface task module
 #include "task_imu_data.h"
+#include "task_motor1.h"
+
+//Share<float> fft_share_gx ("FFT gx Data");
+//Share<float> fft_share_gy ("FFT gy Data");
+
+Queue<float> imu_queue_gx (256, "gx Data");
+Queue<float> imu_queue_gy (256, "gy Data");
+
+//Queue<float> omega_queue_x (256, "Omega x");
+//Queue<float> omega_queue_y (256, "Omega x");
+
+Share<float> imu_share_raw_x ("Raw x data"); 
+Share<float> imu_share_raw_y ("Raw y data");
+
 
 
 /** @brief   Arduino setup function which runs once at program startup.
@@ -45,6 +63,13 @@ void setup ()
 
     // My TASKS FOR RTOS
     xTaskCreate(task_imu_data,
+                 "Data Acq.",
+                 4096,
+                 NULL,
+                 1,
+                 NULL);
+
+    xTaskCreate(task_motor1,
                  "Data Acq.",
                  4096,
                  NULL,

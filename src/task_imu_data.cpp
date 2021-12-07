@@ -1,13 +1,13 @@
 #include <Arduino.h>
 #include <STM32FreeRTOS.h>
 #include <task_imu_data.h>
-#include <I2Cdev.h>
-#include <MPU6050.h>
 #include <MPU6050_6Axis_MotionApps20.h>
 #include <shares.h>
 
-void task_imu_data_x(void* imu_data)
+void task_imu_data(void* imu_data)
 {
+    (void)imu_data;
+
     MPU6050 mpu;
 
     mpu.initialize();
@@ -23,8 +23,8 @@ void task_imu_data_x(void* imu_data)
     {
         // Obtain x and y raw angular acceleration output
         // Note: Maybe these can be shares since mpu.getRotation() calculation ang accel.
-        imu_share_raw_x.put(mpu.getRotationX()); 
-        imu_share_raw_y.put(mpu.getRotationY());
+        imu_share_raw_x.put((float)mpu.getRotationX()); 
+        imu_share_raw_y.put((float)mpu.getRotationY());
         
         //Get euler angles for x and y rotation
         mpu.dmpGetQuaternion(&q, fifoBuffer);

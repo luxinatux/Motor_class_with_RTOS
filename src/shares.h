@@ -6,9 +6,6 @@
 #include <taskqueue.h>
 #include <taskshare.h>
 
-extern Share<float> imu_share_gx ("gx Data");
-extern Share<float> imu_share_gy ("gy Data");
-
 extern Share<float> fft_share_gx ("FFT gx Data");
 extern Share<float> fft_share_gy ("FFT gy Data");
 
