@@ -17,6 +17,7 @@
 #endif
 #include "task_square.h"           // Header for square wave task module
 #include "tasks_ui.h"              // Header for user interface task module
+#include "task_imu_data.h"
 
 
 /** @brief   Arduino setup function which runs once at program startup.
@@ -35,12 +36,12 @@ void setup ()
 
     //Ridgely Stuff
 
-    xTaskCreate (task_ui,
-                 "UI",                            // Task name for printouts
-                 4096,                            // Stack size
-                 NULL,                            // Parameters for task fn.
-                 1,                               // Priority
-                 NULL);                           // Task handle
+    // xTaskCreate (task_ui,
+    //              "UI",                            // Task name for printouts
+    //              4096,                            // Stack size
+    //              NULL,                            // Parameters for task fn.
+    //              1,                               // Priority
+    //              NULL);                           // Task handle
 
     // My TASKS FOR RTOS
     xTaskCreate(task_imu_data,

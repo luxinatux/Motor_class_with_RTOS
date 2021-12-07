@@ -3,6 +3,7 @@
 #include <task_imu_data.h>
 #include <I2Cdev.h>
 #include <MPU6050.h>
+#include <MPU6050_6Axis_MotionApps20.h>
 #include <shares.h>
 
 void task_imu_data_x(void* imu_data)
@@ -38,7 +39,7 @@ void task_imu_data_x(void* imu_data)
         Serial.print(euler[0]);
         Serial.print("   ");
         Serial.print(euler[1]);
-        
+
         vTaskDelay(10);
     }
 }
