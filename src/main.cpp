@@ -42,22 +42,6 @@ void setup ()
                  1,                               // Priority
                  NULL);                           // Task handle
 
-    // Create a task which prints a more agreeable message
-    xTaskCreate (task_square,
-                 "Waves",
-                 2048,                            // Stack size
-                 NULL,
-                 8,                               // High priority
-                 NULL);
-
-    // Create a task which prints a more agreeable message
-    xTaskCreate (task_returns,
-                 "Endl",
-                 2048,                            // Stack size
-                 NULL,
-                 4,                               // Priority
-                 NULL);
-
     // My TASKS FOR RTOS
     xTaskCreate(task_imu_data,
                  "Data Acq.",
