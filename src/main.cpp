@@ -69,12 +69,12 @@ void setup ()
                  1,
                  NULL);
 
-    xTaskCreate(task_motor1,
-                 "Data Acq.",
-                 4096,
-                 NULL,
-                 1,
-                 NULL);
+    // xTaskCreate(task_motor1,
+    //              "Data Acq.",
+    //              4096,
+    //              NULL,
+    //              1,
+    //              NULL);
   
     // xTaskCreate(task_controller_x,
     //           "Control",

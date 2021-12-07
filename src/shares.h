@@ -6,16 +6,16 @@
 #include <taskqueue.h>
 #include <taskshare.h>
 
-extern Share<float> fft_share_gx ("FFT gx Data");
-extern Share<float> fft_share_gy ("FFT gy Data");
+//extern Share<float> fft_share_gx;
+//extern Share<float> fft_share_gy;
 
-extern Queue<float> imu_queue_gx (256, "gx Data");
-extern Queue<float> imu_queue_gy (256, "gy Data");
+extern Queue<float> imu_queue_gx;
+extern Queue<float> imu_queue_gy;
 
-extern Queue<float> omega_queue_x (256, "Omega x");
-extern Queue<float> omega_queue_y (256, "Omega x");
+//extern Queue<float> omega_queue_x;
+//extern Queue<float> omega_queue_y;
 
-extern Share<float> imu_share_raw_x ("Raw x data"); 
-extern Share<float> imu_share_raw_y ("Raw y data");
+extern Share<float> imu_share_raw_x; 
+extern Share<float> imu_share_raw_y;
 
 #endif
