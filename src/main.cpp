@@ -59,7 +59,7 @@ void setup ()
                  NULL);
 
     // My TASKS FOR RTOS
-    xTaskCreate(task_imu_data_x,
+    xTaskCreate(task_imu_data,
                  "Data Acq.",
                  4096,
                  NULL,
