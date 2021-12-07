@@ -1916,7 +1916,6 @@ int16_t MPU6050_Base::getTemperature() {
  */
 void MPU6050_Base::getRotation(int16_t* x, int16_t* y, int16_t* z) {
     I2Cdev::readBytes(devAddr, MPU6050_RA_GYRO_XOUT_H, 6, buffer, I2Cdev::readTimeout, wireObj);
-    complex *pSignalx = new complex[1024];
     *x = (((int16_t)buffer[0]) << 8) | buffer[1];
     *y = (((int16_t)buffer[2]) << 8) | buffer[3];
     *z = (((int16_t)buffer[4]) << 8) | buffer[5];

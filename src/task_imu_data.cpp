@@ -3,10 +3,13 @@
 #include <task_imu_data.h>
 #include <MPU6050_6Axis_MotionApps20.h>
 #include <shares.h>
+#include <Wire.h>
 
 void task_imu_data(void* imu_data)
 {
     (void)imu_data;
+
+    Wire.begin();
 
     MPU6050 mpu;
 
@@ -31,15 +34,18 @@ void task_imu_data(void* imu_data)
         mpu.dmpGetEuler(euler, &q);
 
         // Put gyro data for x and y into queues
-        imu_queue_gx.put(euler[0]);
-        imu_queue_gy.put(euler[1]);
+        //imu_queue_gx.put(euler[0]);
+        //imu_queue_gy.put(euler[1]);
+
+        //float angle1 = euler[0]*180/M_PI;
+        //float angle2 = euler[1]*180/M_PI;
 
         // Delay every 10 ms so angular acceleration can be calculation from angular position
 
-        Serial.print(euler[0]);
+        Serial.print(mpu.getRotationX());
         Serial.print("   ");
-        Serial.print(euler[1]);
+        Serial.println(mpu.getRotationY());
 
-        vTaskDelay(10);
+        vTaskDelay(100);
     }
 }

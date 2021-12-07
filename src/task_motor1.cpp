@@ -1,8 +1,8 @@
-// #include <Arduino.h>
-// #include <shares.h>
-// #include <task_motor1.h>
-// #include <Servo.h>
-// #include <Motor.h>
+#include <Arduino.h>
+#include <shares.h>
+#include <task_motor1.h>
+#include <Servo.h>
+#include <Motor.h>
 
 
 
