@@ -22,22 +22,23 @@ void task_imu_data_x(void* imu_data)
     {
         // Obtain x and y raw angular acceleration output
         // Note: Maybe these can be shares since mpu.getRotation() calculation ang accel.
-        imu_queue_raw_x.put(mpu.getRotationX()); 
-        imu_queue_raw_y.put(mpu.getRotationY());
+        imu_share_raw_x.put(mpu.getRotationX()); 
+        imu_share_raw_y.put(mpu.getRotationY());
         
         //Get euler angles for x and y rotation
         mpu.dmpGetQuaternion(&q, fifoBuffer);
         mpu.dmpGetEuler(euler, &q);
 
-        // Put gyro data for x and y into shared variable
-        //imu_share_gx.put(euler[0]);
-        //imu_share_gy.put(euler[1]);
-        
         // Put gyro data for x and y into queues
         imu_queue_gx.put(euler[0]);
         imu_queue_gy.put(euler[1]);
 
         // Delay every 10 ms so angular acceleration can be calculation from angular position
+
+        Serial.print(euler[0]);
+        Serial.print("   ");
+        Serial.print(euler[1]);
+        
         vTaskDelay(10);
     }
 }
