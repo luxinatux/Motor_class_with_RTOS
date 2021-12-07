@@ -4,6 +4,6 @@
 #ifndef _TASK_IMU_DATA_X
 #define _TASK_IMU_DATA_X
 
-void task_imu_data_x(void* imu_data_x);
+void task_imu_data(void* imu_data);
 
 #endif
