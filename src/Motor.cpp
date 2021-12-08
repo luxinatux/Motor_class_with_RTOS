@@ -1,9 +1,8 @@
-/** @file main.cpp
- *    This file contains a simple demonstration program for ME507 which uses
- *    FreeRTOS to do multitasking. One of the tasks makes a square wave which
- *    can be viewed and measured with a signal analyzer or oscilloscope, while
- *    other tasks just print fairly useless things to the serial port. 
- * 
+/** @file Motor.cpp
+ *    This file contains a creation of a motor class and its functions.
+ * 	  The goal of the functions are to create a motor instance and send
+ * 	  a PWM signal of the correct size. 
+ *  
  *  @author Lucas Martos-Repath & Garret Gilmore
  *  @date   15 Nov 2021 Original file
  *  @date   7 Dec 2021
@@ -13,10 +12,10 @@
 #include <Motor.h>
 #include <Servo.h>
 
-/** @brief   Print a number, saying that it's a number.
- *  @details This is not a particularly useful function, except that it
- *           helps to show how a function can print things under Arduino.
- *  @param   number The number which is to be printed
+/** @brief   Constructor of the motor
+ *  @details This is a function that creates a servo instance of the motor
+ * 			 on startup. 
+ *  @param   sir The name of the Servo instance created
  */
 Motor::Motor(void)
 {
@@ -24,10 +23,14 @@ Motor::Motor(void)
 	// sir.writeMicroseconds(1500);
 	// delay(7000);
 }
-/** @brief   Print a number, saying that it's a number.
- *  @details This is not a particularly useful function, except that it
- *           helps to show how a function can print things under Arduino.
- *  @param   number The number which is to be printed
+/** @brief   Initializing the motors to the motor specifications
+ *  @details This function was created to attach pins and accept 
+ * 			 various motor parameters that will be implemented into
+ * 			 the motor class. It is an assignment function
+ *  @param   in_pin The location of the PWM signal for a specific motor
+ *  @param fwd_sig The largest value of the forward PWM signal in ms
+ *  @param Reverse The smallest value of the Reverse PWM signal in ms
+ *  @param stop the value of no motor movement in ms
  */
 void Motor::initialize(byte in_pin, uint16_t fwd_sig, uint16_t Reverse, uint16_t stop)
  {
@@ -40,10 +43,12 @@ void Motor::initialize(byte in_pin, uint16_t fwd_sig, uint16_t Reverse, uint16_t
     STOP_SIG = stop;
 
 }
-/** @brief   Print a number, saying that it's a number.
- *  @details This is not a particularly useful function, except that it
- *           helps to show how a function can print things under Arduino.
- *  @param   number The number which is to be printed
+/** @brief   Update motor to the correct PWM signal based on user input of throttle
+ *  @details This function updates the PWM duty cycle based on motor specifications
+ * 			 and values incorportated in the class
+ *  @param  throttle A value -100 to 100 that corresponds the %
+ * 					 of max speed in each direction
+ *  @param finalmicro The final ms PWM signal sent to motor to be updated
  */
 void Motor::updateMotor(float throttle)
 {
@@ -51,30 +56,29 @@ void Motor::updateMotor(float throttle)
 	
     if( throttle < -100 ) 
     {
- 			throttle = -100;
+ 			throttle = -100; // making sure the throttle signal is in correct range
 			finalmicro = REV_SIG;
  	}	
     else if( throttle > 100) 
     {
- 			throttle = 100;
+ 			throttle = 100;	// making sure the throttle signal is in correct range
 			finalmicro = FWD_SIG;
  	}
 	else if( throttle > 0) 
     {
 			
-			finalmicro = ((FWD_SIG - STOP_SIG)*(throttle/100) + STOP_SIG);
-			//finalmicro = 1600;
+			finalmicro = ((FWD_SIG - STOP_SIG)*(throttle/100) + STOP_SIG); //calculation of PWM for positive throttle
  	}
 	else if( throttle < 0) 
     {
 			
-			finalmicro = (( STOP_SIG - REV_SIG)*(throttle/100) + REV_SIG);
+			finalmicro = (( STOP_SIG - REV_SIG)*(throttle/100) + REV_SIG);//calculation of PWM for negative throttle
 			
  	}
 	 else if( throttle = 0) 
     {
 			
-			finalmicro = STOP_SIG;
+			finalmicro = STOP_SIG; // Zero throttle
  	}	
     else  
     {
@@ -83,15 +87,10 @@ void Motor::updateMotor(float throttle)
 
  	//printf("The duty cycle is: %d\n", throttle_Sig);
 
-	sir.writeMicroseconds(finalmicro);
+	sir.writeMicroseconds(finalmicro); // update motor with finalmicro PWM 
 	Serial.print(finalmicro);
-	//esc->THROTTLE_SIG = throttle_Sig; //example line of code to set throttle
 	// -100 corresponds to 1100 and 100 corresponds to 1900
 	// I need to scale the values from -100 and 100 to the range of 1100 to 1900
-	//float onTime = (esc->STOP_SIG + throttle_Sig*4)*(1.0/1000); // This line gives us the "on-time" of the ESC in seconds
-	//float dtyCycle = (onTime/esc->PER)*(1.0/10); // Calculates the duty cycle
-	// line of math = threshold (thrsh); auto-reload - (duty cycle * auto-reload)
-	//float thrsh = esc->AUTO_RLD - dtyCycle*esc->AUTO_RLD;
-	//*(esc->ESC_TMRCH_CCR) = thrsh;
+	
 	return;
 }
