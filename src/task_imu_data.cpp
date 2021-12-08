@@ -1,4 +1,4 @@
-/** @file main.cpp
+/** @file task_imu_data.cpp
  *    This file contains code for the task_imu_data function
  * 
  *  @author Lucas Martos-Repath & Garret Gilmore

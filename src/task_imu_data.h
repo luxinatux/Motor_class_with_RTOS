@@ -1,4 +1,4 @@
-/** @file main.cpp
+/** @file task_imu_data.h
  *    This is a head file for the task_imu_data function
  * 
  *  @author Lucas Martos-Repath & Garret Gilmore

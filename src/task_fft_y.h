@@ -1,4 +1,4 @@
-/** @file main.cpp
+/** @file task_fft_y.h
  *    This is a header file for the task_fft_y function
  * 
  *  @author Lucas Martos-Repath & Garret Gilmore

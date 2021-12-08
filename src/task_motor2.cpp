@@ -1,4 +1,4 @@
-/** @file main.cpp
+/** @file task_motor2.cpp
  *    This file contains code for the task_motor2 function.
  * 
  *  @author Lucas Martos-Repath & Garret Gilmore

@@ -1,4 +1,4 @@
-/** @file main.cpp
+/** @file task_fft_x.cpp
  *    This file contains code for the task_fft_x function.
  * 
  *  @author Lucas Martos-Repath & Garret Gilmore

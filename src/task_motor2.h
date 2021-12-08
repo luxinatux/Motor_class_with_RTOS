@@ -1,4 +1,4 @@
-/** @file main.cpp
+/** @file task_motor2.h
  *    This is a header file for the task_motor2 function.
  * 
  *  @author Lucas Martos-Repath & Garret Gilmore
