@@ -41,4 +41,6 @@ extern  Queue<float> imu_queue_y;
 extern Share<float> controller_update_x; 
 extern Share<float> controller_update_y;
 
+//extern Share<uint8_t> controller_state; //controller 1 is regular controller, controller 2 is FFT controller
+
 #endif
