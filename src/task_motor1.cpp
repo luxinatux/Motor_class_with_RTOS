@@ -1,8 +1,5 @@
 /** @file main.cpp
- *    This file contains a simple demonstration program for ME507 which uses
- *    FreeRTOS to do multitasking. One of the tasks makes a square wave which
- *    can be viewed and measured with a signal analyzer or oscilloscope, while
- *    other tasks just print fairly useless things to the serial port. 
+ *    This file contains code for the task_motor1 function.
  * 
  *  @author Lucas Martos-Repath & Garret Gilmore
  *  @date   15 Nov 2021 Original file
@@ -16,22 +13,26 @@
 #include <Servo.h>
 #include <Motor.h>
 
-/** @brief   Print a number, saying that it's a number.
- *  @details This is not a particularly useful function, except that it
- *           helps to show how a function can print things under Arduino.
- *  @param   number The number which is to be printed
+/** @brief   Implement Motor class using values from task_controller
+ *  @details This task gets updated data from the controller task (task_controller)
+ *           and utilizes the Motor class to send the correct PWM signal for the
+ *           desired rotation.
  */
 
-// Need to figure out how fast the motor should turn in each direction
+
 void task_motor1 (void* data)
 {
     (void)data;
+
+    // Create motor1 object
     Motor motor1;
+
+    // Initiallize the ESC connected to pin D6
     motor1.initialize(D6, 1900, 1100, 1500);
     float throttle = 0.0;
     for (;;)
     {
-        // Get fundamental frequency
+        // Revieve throttle amount from controller
         throttle = controller_update_x.get();
 
         motor1.updateMotor(throttle);
