@@ -19,6 +19,7 @@
 
 #include "task_imu_data.h"
 #include "task_motor1.h"
+#include "task_motor2.h"
 #include "task_controller_x.h"
 
 
