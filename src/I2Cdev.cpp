@@ -1,3 +1,16 @@
+/** @file main.cpp
+ *    This file contains a simple demonstration program for ME507 which uses
+ *    FreeRTOS to do multitasking. One of the tasks makes a square wave which
+ *    can be viewed and measured with a signal analyzer or oscilloscope, while
+ *    other tasks just print fairly useless things to the serial port. 
+ * 
+ *  @author Lucas Martos-Repath & Garret Gilmore
+ *  @date   15 Nov 2021 Original file
+ *  @date   7 Dec 2021
+ */
+
+
+
 // I2Cdev library collection - Main I2C device class
 // Abstracts bit and byte I2C R/W functions into a convenient class
 // 2013-06-05 by Jeff Rowberg <jeff@rowberg.net>

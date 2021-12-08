@@ -1,3 +1,16 @@
+/** @file main.cpp
+ *    This file contains a simple demonstration program for ME507 which uses
+ *    FreeRTOS to do multitasking. One of the tasks makes a square wave which
+ *    can be viewed and measured with a signal analyzer or oscilloscope, while
+ *    other tasks just print fairly useless things to the serial port. 
+ * 
+ *  @author Lucas Martos-Repath & Garret Gilmore
+ *  @date   15 Nov 2021 Original file
+ *  @date   7 Dec 2021
+ */
+
+
+
 // I2C device class (I2Cdev) demonstration Arduino sketch for MPU6050 class, 3D math helper
 // 6/5/2012 by Jeff Rowberg <jeff@rowberg.net>
 // Updates should (hopefully) always be available at https://github.com/jrowberg/i2cdevlib

@@ -4,10 +4,9 @@
  *    can be viewed and measured with a signal analyzer or oscilloscope, while
  *    other tasks just print fairly useless things to the serial port. 
  * 
- *  @author JR Ridgely
- *  @date   28 Sep 2020 Original file
- *  @date    9 Oct 2020 Added another task because I got bored
- *  @date   19 Oct 2021 Changed a task from simulation to real square waves
+ *  @author Lucas Martos-Repath & Garret Gilmore
+ *  @date   15 Nov 2021 Original file
+ *  @date   7 Dec 2021
  */
 
 #include <Arduino.h>

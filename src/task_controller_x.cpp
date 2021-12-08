@@ -1,6 +1,13 @@
-// /*  This task needs to take all of the data and decide what to do with it.
-//     All direct 
-
+/** @file main.cpp
+ *    This file contains a simple demonstration program for ME507 which uses
+ *    FreeRTOS to do multitasking. One of the tasks makes a square wave which
+ *    can be viewed and measured with a signal analyzer or oscilloscope, while
+ *    other tasks just print fairly useless things to the serial port. 
+ * 
+ *  @author Lucas Martos-Repath & Garret Gilmore
+ *  @date   15 Nov 2021 Original file
+ *  @date   7 Dec 2021
+ */
 
 #include <Arduino.h>
 #include <STM32FreeRTOS.h>
@@ -19,7 +26,8 @@ void task_controller_x(void* gxdata)
     (void)gxdata;
     const int16_t queue_size = 256;
     int16_t theta_x1, theta_x2, theta_y1, theta_y2;
-    int16_t omega_x, omega_y;
+    int16_t omega_x1, omega_x2;
+    int16_t omega_y1, omega_y2;
     int16_t alpha_x, alpha_y;
 
     int16_t raw_x1;
@@ -32,19 +40,26 @@ void task_controller_x(void* gxdata)
     float o_r = 0.104775; // Mug outer radius [m]
     float height = 0.1651; // Mug height overall [m]
     float mug_mass = 0.82; // Mug weight [kg]
-    float J_mug = (mug_mass/12)*(3*(i_r*i_r + o_r*o_r) + (height*height));
+    float I_mug = (mug_mass/12)*(3*(i_r*i_r + o_r*o_r) + (height*height));
+    
 
     // Reaction wheel dynamics
     float motor_mass = 0.049; //motor mass in [kg]
-    float wheel_mass = ;
-    float fly_radius = ;
+    float wheel_mass = 0.058; //weight of ideal machined wheel [kg]
+    float fly_radius = 0.01524; // 0.6 in for ideal machined wheels [m]
     float fly_mass = motor_mass + wheel_mass;
-    float I_flywheel = 0.5*fly_mass*fly_radius;
+    float I_flywheel = 0.5*fly_mass*fly_radius*fly_radius;
 
     // Controller Variables
     float range = 90;
     float P = 0.0;
     float D = 0.25;
+
+    // Throttle Control
+    float torque_needed;
+    float previous_throttle;
+    float current_throttle;
+
 
     //Timing 
     TickType_t first_tick;
@@ -52,13 +67,17 @@ void task_controller_x(void* gxdata)
 
     for(;;)
     {
-        // Get imu queue data
+        
         first_tick = xTaskGetTickCount();
-        theta_x1 = imu_share_raw_x.get();
-        theta_x2 = imu_share_raw_x.get();
+        
+        // Get imu queue data
+        omega_x1 = imu_share_raw_x.get();
+        omega_x2 = imu_share_raw_x.get();
 
         // Calculate angular acceleration, put values into new array
-        alpha_x = (theta_x1 - theta_x2)*(3.14/180)/(first_tick - prev_tick);
+        alpha_x = (omega_x1 - omega_x2)*(3.14/180)*(1000)/(first_tick - prev_tick);
+
+        torque_needed = 
 
         // Initialise the xLastWakeTime variable with the current time.
         // It will be used to run the task at precise intervals
