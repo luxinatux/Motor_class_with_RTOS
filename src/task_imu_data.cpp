@@ -1,8 +1,5 @@
 /** @file main.cpp
- *    This file contains a simple demonstration program for ME507 which uses
- *    FreeRTOS to do multitasking. One of the tasks makes a square wave which
- *    can be viewed and measured with a signal analyzer or oscilloscope, while
- *    other tasks just print fairly useless things to the serial port. 
+ *    This file contains code for the task_imu_data function
  * 
  *  @author Lucas Martos-Repath & Garret Gilmore
  *  @date   15 Nov 2021 Original file
@@ -16,39 +13,48 @@
 #include <shares.h>
 #include <Wire.h>
 
-/** @brief   Print a number, saying that it's a number.
- *  @details This is not a particularly useful function, except that it
- *           helps to show how a function can print things under Arduino.
- *  @param   number The number which is to be printed
+/** @brief   Collect IMU angular velocity data.
+ *  @details Iniitialize the IMU and collect the angular acceleration data
+ *           in the x and y directions and put the data into shares and queues.
  */
 
 void task_imu_data(void* imu_data)
 {
     (void)imu_data;
-
+    
+    // Begin I2C connection
     Wire.begin();
 
+    // Create mpu object
     MPU6050 mpu;
 
+    // Initialize the IMU
     mpu.initialize();
 
-    int16_t gx, gy, gz;
+    float gx, gy;
 
 
-    uint8_t fifoBuffer[64];
-    Quaternion q;
-    float euler[3];
+    // uint8_t fifoBuffer[64];
+    // Quaternion q;
+    // float euler[3];
 
     for (;;)
     {
         // Obtain x and y raw angular acceleration output
-        // Note: Maybe these can be shares since mpu.getRotation() calculation ang accel.
-        imu_share_raw_x.put((float)mpu.getRotationX()); 
-        imu_share_raw_y.put((float)mpu.getRotationY());
+        gx = mpu.getRotationX(); 
+        gy = mpu.getRotationY();
+
+        // Put data into shares
+        imu_share_raw_x.put(gx);
+        imu_share_raw_y.put(gy);
+
+        // Put data into queues
+        imu_queue_x.put(gx);
+        imu_queue_y.put(gy);
         
         //Get euler angles for x and y rotation
-        mpu.dmpGetQuaternion(&q, fifoBuffer);
-        mpu.dmpGetEuler(euler, &q);
+        // mpu.dmpGetQuaternion(&q, fifoBuffer);
+        // mpu.dmpGetEuler(euler, &q);
 
         // Put gyro data for x and y into queues
         //imu_queue_gx.put(euler[0]);
@@ -58,11 +64,6 @@ void task_imu_data(void* imu_data)
         //float angle2 = euler[1]*180/M_PI;
 
         // Delay every 10 ms so angular acceleration can be calculation from angular position
-
-        Serial.print(mpu.getRotationX());
-        Serial.print("   ");
-        Serial.println(mpu.getRotationY());
-
-        vTaskDelay(100);
+        vTaskDelay(10);
     }
 }
