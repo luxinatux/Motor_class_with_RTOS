@@ -17,6 +17,12 @@
 #include <taskqueue.h>
 #include <taskshare.h>
 
+/** @brief   Print a number, saying that it's a number.
+ *  @details This is not a particularly useful function, except that it
+ *           helps to show how a function can print things under Arduino.
+ *  @param   number The number which is to be printed
+ */
+
 //extern Share<float> fft_share_gx;
 //extern Share<float> fft_share_gy;
 

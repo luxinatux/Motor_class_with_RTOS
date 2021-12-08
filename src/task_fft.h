@@ -13,6 +13,11 @@
 #include <STM32FreeRTOS.h>
 #include <shares.h>
 
+/** @brief   Print a number, saying that it's a number.
+ *  @details This is not a particularly useful function, except that it
+ *           helps to show how a function can print things under Arduino.
+ *  @param   number The number which is to be printed
+ */
 
 #ifndef _TASK_FFT_
 #define _TASK_FFT_

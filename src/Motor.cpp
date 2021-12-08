@@ -13,13 +13,22 @@
 #include <Motor.h>
 #include <Servo.h>
 
+/** @brief   Print a number, saying that it's a number.
+ *  @details This is not a particularly useful function, except that it
+ *           helps to show how a function can print things under Arduino.
+ *  @param   number The number which is to be printed
+ */
 Motor::Motor(void)
 {
 	Servo sir;
 	// sir.writeMicroseconds(1500);
 	// delay(7000);
 }
-
+/** @brief   Print a number, saying that it's a number.
+ *  @details This is not a particularly useful function, except that it
+ *           helps to show how a function can print things under Arduino.
+ *  @param   number The number which is to be printed
+ */
 void Motor::initialize(byte in_pin, uint16_t fwd_sig, uint16_t Reverse, uint16_t stop)
  {
 	sir.attach(in_pin);
@@ -31,7 +40,11 @@ void Motor::initialize(byte in_pin, uint16_t fwd_sig, uint16_t Reverse, uint16_t
     STOP_SIG = stop;
 
 }
-
+/** @brief   Print a number, saying that it's a number.
+ *  @details This is not a particularly useful function, except that it
+ *           helps to show how a function can print things under Arduino.
+ *  @param   number The number which is to be printed
+ */
 void Motor::updateMotor(float throttle)
 {
 	uint16_t finalmicro = 0;

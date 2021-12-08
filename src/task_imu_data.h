@@ -15,6 +15,12 @@
 #ifndef _TASK_IMU_DATA_X
 #define _TASK_IMU_DATA_X
 
+/** @brief   Print a number, saying that it's a number.
+ *  @details This is not a particularly useful function, except that it
+ *           helps to show how a function can print things under Arduino.
+ *  @param   number The number which is to be printed
+ */
+
 void task_imu_data(void* imu_data);
 
 #endif

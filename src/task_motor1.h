@@ -16,6 +16,11 @@
 #ifndef _TASK_MOTOR1
 #define _TASK_MOTOR1
 
+/** @brief   Print a number, saying that it's a number.
+ *  @details This is not a particularly useful function, except that it
+ *           helps to show how a function can print things under Arduino.
+ *  @param   number The number which is to be printed
+ */
 void task_motor1(void* data);
 
 #endif

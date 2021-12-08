@@ -16,7 +16,11 @@
 #include <Servo.h>
 #include <Motor.h>
 
-
+/** @brief   Print a number, saying that it's a number.
+ *  @details This is not a particularly useful function, except that it
+ *           helps to show how a function can print things under Arduino.
+ *  @param   number The number which is to be printed
+ */
 
 // Need to figure out how fast the motor should turn in each direction
 void task_motor1 (void* data)

@@ -19,15 +19,19 @@
 // #include <fft.h>
 // #include <shares.h>
 
-// const uint16_t queue_size = 256;
-// int16_t gx[queue_size], gy[queue_size];
 
 
+/** @brief   Print a number, saying that it's a number.
+ *  @details This is not a particularly useful function, except that it
+ *           helps to show how a function can print things under Arduino.
+ *  @param   number The number which is to be printed
+ */
 
 // void task_fft(void* newgxdata)
 // {
 //     uint16_t counter = 0;
-
+//     const uint16_t queue_size = 256;
+//     int16_t gx[queue_size], gy[queue_size];
 //     for(;;) 
 //     {
 //         // Getting x and y gyro data in the queue

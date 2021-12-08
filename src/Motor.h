@@ -15,6 +15,11 @@
 #ifndef _MOTOR_H_
 #define _MOTOR_H_
 
+/** @brief   Print a number, saying that it's a number.
+ *  @details This is not a particularly useful function, except that it
+ *           helps to show how a function can print things under Arduino.
+ *  @param   number The number which is to be printed
+ */
 class Motor
 {
     protected:

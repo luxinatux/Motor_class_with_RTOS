@@ -15,13 +15,12 @@
 #include <shares.h>
 #include <taskqueue.h>
 #include <taskshare.h>
-#if (defined STM32L4xx || defined STM32F4xx)
-    #include <STM32FreeRTOS.h>
-#endif
-#include "task_square.h"           // Header for square wave task module
-#include "tasks_ui.h"              // Header for user interface task module
+
+
 #include "task_imu_data.h"
 #include "task_motor1.h"
+#include "task_controller_x.h"
+
 
 
 //Share<float> fft_share_gx ("FFT gx Data");
@@ -52,17 +51,6 @@ void setup ()
     Serial.begin (115200);
     delay (2000);
     Serial << endl << endl << "Hello, I am an RTOS demonstration" << endl;
-
-    // Create a task which prints a slightly disagreeable message
-
-    //Ridgely Stuff
-
-    // xTaskCreate (task_ui,
-    //              "UI",                            // Task name for printouts
-    //              4096,                            // Stack size
-    //              NULL,                            // Parameters for task fn.
-    //              1,                               // Priority
-    //              NULL);                           // Task handle
 
     // My TASKS FOR RTOS
     xTaskCreate(task_imu_data,
