@@ -1,8 +1,7 @@
-/** @file main.cpp
- *    This file contains a simple demonstration program for ME507 which uses
- *    FreeRTOS to do multitasking. One of the tasks makes a square wave which
- *    can be viewed and measured with a signal analyzer or oscilloscope, while
- *    other tasks just print fairly useless things to the serial port. 
+/** @file shares.h
+ *    This file contains an implementation of the Shares.h. This allows us to 
+ *    keep track of the shared variables and queues between tasks and are initialized 
+ *    in the main.cpp
  * 
  *  @author Lucas Martos-Repath & Garret Gilmore
  *  @date   15 Nov 2021 Original file
@@ -17,29 +16,24 @@
 #include <taskqueue.h>
 #include <taskshare.h>
 
-/** @brief   Print a number, saying that it's a number.
- *  @details This is not a particularly useful function, except that it
- *           helps to show how a function can print things under Arduino.
- *  @param   number The number which is to be printed
- */
 
-//extern Share<float> fft_share_gx;
-//extern Share<float> fft_share_gy;
+//extern Share<float> fft_share_gx; //FFT share
+//extern Share<float> fft_share_gy; //FFT share
 
-extern Queue<float> imu_queue_gx;
-extern Queue<float> imu_queue_gy;
+extern Queue<float> imu_queue_gx; 
+extern Queue<float> imu_queue_gy; 
 
 //extern Queue<float> omega_queue_x;
 //extern Queue<float> omega_queue_y;
 
-extern Share<float> imu_share_raw_x; 
-extern Share<float> imu_share_raw_y;
+extern Share<float> imu_share_raw_x; // Share to store raw angular velocity data x
+extern Share<float> imu_share_raw_y; // Share to store raw angular velocity data y
 
-extern Queue<float> imu_queue_x;
-extern  Queue<float> imu_queue_y;
+extern Queue<float> imu_queue_x; //Queue to store raw angular velocity data x
+extern  Queue<float> imu_queue_y; //Queue to store raw angular velocity data y
 
-extern Share<float> controller_update_x; 
-extern Share<float> controller_update_y;
+extern Share<float> controller_update_x; //Share to store values of throttle to send to motor task x
+extern Share<float> controller_update_y; //Share to store values of throttle to send to motor task y
 
 //extern Share<uint8_t> controller_state; //controller 1 is regular controller, controller 2 is FFT controller
 
