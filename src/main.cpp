@@ -38,6 +38,8 @@ Share<float> imu_share_raw_y ("Raw y data");
 Share<float> controller_update_x ("Throttle Signal x"); 
 Share<float> controller_update_y ("Throttle Signal y");
 
+//Share<uint8_t> controller_state("choosing which controller state");
+
 
 
 /** @brief   Arduino setup function which runs once at program startup.
