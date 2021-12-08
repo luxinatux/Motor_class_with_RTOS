@@ -1,8 +1,5 @@
 /** @file main.cpp
- *    This file contains a simple demonstration program for ME507 which uses
- *    FreeRTOS to do multitasking. One of the tasks makes a square wave which
- *    can be viewed and measured with a signal analyzer or oscilloscope, while
- *    other tasks just print fairly useless things to the serial port. 
+ *    This is a header file for the task_motor1 function.
  * 
  *  @author Lucas Martos-Repath & Garret Gilmore
  *  @date   15 Nov 2021 Original file
@@ -16,11 +13,6 @@
 #ifndef _TASK_MOTOR1
 #define _TASK_MOTOR1
 
-/** @brief   Print a number, saying that it's a number.
- *  @details This is not a particularly useful function, except that it
- *           helps to show how a function can print things under Arduino.
- *  @param   number The number which is to be printed
- */
 void task_motor1(void* data);
 
 #endif
