@@ -63,14 +63,20 @@ void setup ()
                  NULL);
 
     xTaskCreate(task_motor1,
-                 "Data Acq.",
+                 "Motor Control x",
+                 4096,
+                 NULL,
+                 1,
+                 NULL);
+    xTaskCreate(task_motor2,
+                 "Motor Control y",
                  4096,
                  NULL,
                  1,
                  NULL);
   
     xTaskCreate(task_controller_x,
-              "Control",
+              "Controller",
               2048,
               NULL,
               2,
