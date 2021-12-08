@@ -1,10 +1,8 @@
-/** @file main.cpp
- *    This file contains a simple demonstration program for ME507 which uses
- *    FreeRTOS to do multitasking. One of the tasks makes a square wave which
- *    can be viewed and measured with a signal analyzer or oscilloscope, while
- *    other tasks just print fairly useless things to the serial port. 
+/** @file helper_3dmath.h
+ *    This file contains the implementation of a MPU6050 IMU driver.
+ *    This file was created b Jeff Rowberg and found via his github
  * 
- *  @author Lucas Martos-Repath & Garret Gilmore
+ *          Used By: Lucas Martos-Repath & Garret Gilmore
  *  @date   15 Nov 2021 Original file
  *  @date   7 Dec 2021
  */

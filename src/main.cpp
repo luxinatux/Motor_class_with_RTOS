@@ -1,8 +1,7 @@
 /** @file main.cpp
  *    This file contains a simple demonstration program for ME507 which uses
- *    FreeRTOS to do multitasking. One of the tasks makes a square wave which
- *    can be viewed and measured with a signal analyzer or oscilloscope, while
- *    other tasks just print fairly useless things to the serial port. 
+ *    FreeRTOS to do multitasking. We have 4 tasks created in our main file, which 
+ *    can be explored in more depth in each of the task files.
  * 
  *  @author Lucas Martos-Repath & Garret Gilmore
  *  @date   15 Nov 2021 Original file
@@ -67,27 +66,27 @@ void setup ()
                  "Motor Control x",
                  4096,
                  NULL,
-                 1,
+                 2,
                  NULL);
     xTaskCreate(task_motor2,
                  "Motor Control y",
                  4096,
                  NULL,
-                 1,
+                 2,
                  NULL);
   
     xTaskCreate(task_controller_x,
-              "Controller",
-              2048,
-              NULL,
-              2,
-              NULL);
+                "Controller",
+                2048,
+                NULL,
+                3,
+                NULL);
 
     // xTaskCreate(task_fft,
     //           "FFT",
     //           4096,
     //           NULL,
-    //           6,
+    //           4,
     //           NULL);
 
     // If using an STM32, we need to call the scheduler startup function now;

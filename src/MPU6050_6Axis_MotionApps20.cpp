@@ -1,14 +1,11 @@
-/** @file main.cpp
- *    This file contains a simple demonstration program for ME507 which uses
- *    FreeRTOS to do multitasking. One of the tasks makes a square wave which
- *    can be viewed and measured with a signal analyzer or oscilloscope, while
- *    other tasks just print fairly useless things to the serial port. 
+/** @file MPU6050_6Axis_MotionApps20.cpp
+ *    This file contains the implementation of a MPU6050 IMU driver.
+ *    This file was created b Jeff Rowberg and found via his github
  * 
- *  @author Lucas Martos-Repath & Garret Gilmore
+ *          Used By: Lucas Martos-Repath & Garret Gilmore
  *  @date   15 Nov 2021 Original file
  *  @date   7 Dec 2021
  */
-
 
 // I2Cdev library collection - MPU6050 I2C device class, 6-axis MotionApps 2.0 implementation
 // Based on InvenSense MPU-6050 register map document rev. 2.0, 5/19/2011 (RM-MPU-6000A-00)
