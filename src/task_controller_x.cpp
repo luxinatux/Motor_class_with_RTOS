@@ -58,7 +58,7 @@ void task_controller_x(void* gxdata)
         theta_x2 = imu_share_raw_x.get();
 
         // Calculate angular acceleration, put values into new array
-        alpha_x = (theta_x1 - theta_x2)*(3.14/180)/200;
+        alpha_x = (theta_x1 - theta_x2)*(3.14/180)/(first_tick - prev_tick);
 
         // Initialise the xLastWakeTime variable with the current time.
         // It will be used to run the task at precise intervals
