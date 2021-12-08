@@ -16,7 +16,7 @@
 /** @brief   Implement Motor class using values from task_controller
  *  @details This task gets updated data from the controller task (task_controller)
  *           and utilizes the Motor class to send the correct PWM signal for the
- *           desired rotation.
+ *           desired rotation for Motor 1.
  */
 
 
