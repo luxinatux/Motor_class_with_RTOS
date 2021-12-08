@@ -69,8 +69,8 @@ void task_controller_x(void* gxdata)
 
     // Throttle Control
     float torque_needed;
-    float previous_throttle_x = 50;
-    float current_throttle_x;
+    float previous_throttle_x = 50; // Steady State throttle
+    float current_throttle_x; // current thro
     float previous_throttle_y = 50;
     float current_throttle_y;
     float max_change = 20.0;
@@ -85,6 +85,8 @@ void task_controller_x(void* gxdata)
 
     for(;;)
     {
+        //if(controller_state.get() = 1){ // Controller if statement for determining if FFT task is ready to take over controller
+
         
         first_tick = xTaskGetTickCount();
         
@@ -95,27 +97,35 @@ void task_controller_x(void* gxdata)
         // Calculate angular acceleration, put values into new array
         alpha_x = (omega_x1 - omega_x2)*(3.14/180)*(1000)/(first_tick - prev_tick);
 
-        current_throttle_x = previous_throttle_x + ((P * omega_x2) + (D * alpha_x));
-        if((current_throttle - previous_throttle) > max_change)
+        current_throttle_x = previous_throttle_x + ((P * omega_x2) + (D * alpha_x)); //
+        if((current_throttle_x - previous_throttle_x) > max_change)
         {
             current_throttle_x = previous_throttle_x + max_change;
         }
 
 
-        controller_update_x.put(current_throttle_x)
+        controller_update_x.put(current_throttle_x);
         // Initialise the xLastWakeTime variable with the current time.
         // It will be used to run the task at precise intervals
+        previous_throttle_x = current_throttle_x;
         
         prev_tick = first_tick;
 
+
+        //} end if loop for determining controller state
 
         // Input share data into motor class to get output value
         //int16_t gx = motor1.change(gx_queue);
         //int16_t gy = motor2.change(gy_queue);
 
-        // Get FFT data
+
+        //FFT CONTROLLER BELOw
+        //else{
+           // Get FFT data
         // int16_t gx_fft = fft_share_gx.get();
-        // int16_t gy_fft = fft_share_gy.get();
+        // int16_t gy_fft = fft_share_gy.get(); 
+        //  }
+        
 
     }
 }
